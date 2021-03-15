@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.18.0 (06a2e56)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mysql
+  name: mysql
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mysql
+    spec:
+      containers:
+      - args:
+        - --default-authentication-plugin=mysql_native_password
+        env:
+        - name: MYSQL_DATABASE
+          value: users
+        - name: MYSQL_PASSWORD
+          value: ecvbjkl9876t
+        - name: MYSQL_ROOT_PASSWORD
+          value: qazxsw
+        - name: MYSQL_USER
+          value: app
+        image: mysql:8.0.13
+        name: mysql
+        ports:
+        - containerPort: 3306
+        resources: {}
+      restartPolicy: Always
+status: {}
